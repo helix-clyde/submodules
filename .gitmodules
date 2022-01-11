@@ -1,0 +1,12 @@
+[submodule "samtools"]
+	path = samtools
+	url = git@github.com:samtools/samtools.git
+	branch = master
+[submodule "bcftools"]
+	path = bcftools
+	url = git@github.com:samtools/bcftools.git
+	branch = master
+[submodule "singularity"]
+	path = singularity
+	url = https://github.com/apptainer/singularity.git
+	branch = master
