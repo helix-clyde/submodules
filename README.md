@@ -4,10 +4,13 @@
 
 ---
 ## Create submodules
-  ```bash
-  git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
-  git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
-  ```
+
+From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
+```bash
+git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
+git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
+git submodule add --name singularity -b master https://github.com/apptainer/singularity.git singularity
+```
 Check the status
 ```bash
 (main) % git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
@@ -61,7 +64,7 @@ submodules (main 4S-0U) % cat .gitmodules
 
 ---
 ## Cloning
-Just doing a git clone will *not* pull the submodules
+Just doing a git clone will *not* pull the submodules<br>
 Running `git clone git@github.com:helix-clyde/submodules.git` will pull the repository, but will not checkout the submodules e.g.
 
 ```bash
@@ -116,11 +119,11 @@ Run `git clone --recursive git@github.com:helix-clyde/submodules.git` to do the 
 
 The sha tag of the branch is tracked in `$(git root)/.gitmodules` and in the configuration directory `.git/modules/<submodulename>/HEAD`
 
-When you change to a branch that has a different submoddule commit, the submodules will **not** change to the committed version. 
+When you change to a branch that has a different submoddule commit, the submodules will **not** change to the committed version.
 
 In order to change to the commited version of the submodule run
 ```bash
-git submodule update --checkout --recursive 
+git submodule update --checkout --recursive
 ```
 Note the following example
 ```bash
@@ -163,7 +166,7 @@ submodules (main) $ git submodule
 +c29621d3ae075573fce83e229a5e02348d4e8147 samtools (1.14)
 +2f16701e33f5e54824429d196b239cff30e208be singularity (v3.8.3-222-g2f16701e3)
 
-submodules (main) $ git submodule update --checkout --recursive 
+submodules (main) $ git submodule update --checkout --recursive
 Submodule path 'bcftools': checked out 'fc13b08a45e0577c01a831412bbd3cd5119866a7'
 Submodule path 'samtools': checked out 'bcd9f35cefdd8b92044d2259506aff39f0a6baf9'
 Submodule path 'singularity': checked out '61774037330ebcdd1852f381d4f9f5acf5230045'
@@ -172,7 +175,7 @@ submodules (main) $ git submodule
  fc13b08a45e0577c01a831412bbd3cd5119866a7 bcftools (1.13)
  bcd9f35cefdd8b92044d2259506aff39f0a6baf9 samtools (1.13)
  61774037330ebcdd1852f381d4f9f5acf5230045 singularity (v3.8.5)
- 
+
 ```
 
 ---
