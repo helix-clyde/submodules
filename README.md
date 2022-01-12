@@ -105,7 +105,7 @@ or you can run this bash snippet
 ```
 for subm in $(grep submodule .gitmodules  | cut -d \" -f 2);
   do
-    git submodule init $subm
+    git submodule update --init $subm
   done
 ```
 run `git clone --recursive git@github.com:helix-clyde/submodules.git` to do the full checkout
