@@ -1,5 +1,6 @@
 # Submodules
   Learning how to include and pin specific submodules.
+  
   We'll be utilizing the biotools suite to do this
 
 ---
@@ -265,6 +266,6 @@ submodules (main) $ git submodule
 
 ---
 ## References
- * Official Git References
-  * https://git-scm.com/book/en/v2/Git-Tools-Submodules
-  * https://git-scm.com/docs/git-submodule
+ - Official Git References
+   - https://git-scm.com/book/en/v2/Git-Tools-Submodules
+   - https://git-scm.com/docs/git-submodule
