@@ -62,6 +62,91 @@ submodules (main 4S-0U) % cat .gitmodules
 	branch = master
 ```
 
+### Associate a specific tag (or revision) of a submodule with a branch
+To get specific revisions of a submodule into the branch, you'll need to go to each submodule and checkout the tag. <br>
+Since each submodule is tracked commit revision, it will always show as detached.<br>
+Don't forget to push your tags!
+
+
+```bash
+submodules (main) $ git checkout -b tagging
+Switched to a new branch 'tagging'
+
+submodules (tagging <>) $ cd bcftools/
+
+bcftools ((detached) <>) $ git checkout tags/1.0
+Previous HEAD position was 8bf3593 bugfix: missing "," in ALT
+HEAD is now at 620cc50 Release 1.0: first BCFtools release
+
+bcftools ((detached) <>) $ cd ../samtools/
+
+samtools ((detached) <>) $ git checkout tags/1.0
+Previous HEAD position was c29621d Release 1.14
+HEAD is now at 5370fe9 Release 1.0: first htslib-based samtools release
+samtools ((detached) <>) $ cd ../singularity/
+
+singularity ((detached) <>) $ git checkout tags/1.0
+Previous HEAD position was 2f16701e3 Merge pull request #6328 from DrDaveD/disable-dependabot
+HEAD is now at 932107407 Fixes for Debian/*ubuntu
+
+singularity ((detached) <>) $ cd ..
+
+submodules (tagging <> 0S-3U) $ git diff
+diff --git a/bcftools b/bcftools
+index 5f1bf7a..620cc50 160000
+--- a/bcftools
++++ b/bcftools
+@@ -1 +1 @@
+-Subproject commit 5f1bf7a1b016c24d38657bdde5fd2ca27e6954e9
++Subproject commit 620cc50ffa5a41f2cdfd8c629ec6179bcb05785c
+diff --git a/samtools b/samtools
+index c29621d..5370fe9 160000
+--- a/samtools
++++ b/samtools
+@@ -1 +1 @@
+-Subproject commit c29621d3ae075573fce83e229a5e02348d4e8147
++Subproject commit 5370fe9d469c8b123bec1638dd1e3d2f92308bd6
+diff --git a/singularity b/singularity
+index 2f16701..9321074 160000
+--- a/singularity
++++ b/singularity
+@@ -1 +1 @@
+-Subproject commit 2f16701e33f5e54824429d196b239cff30e208be
++Subproject commit 9321074074ca00384322bdf3373c3701f4c6d3d2
+
+submodules (tagging <> 0S-3U) $ git commit -am "version 1.0 of all tools"
+[tagging 48345dc] version 1.0 of all tools
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+submodules (tagging <>) $ git tag 1.0 -am "versions 1.0 of all tools"
+
+submodules (tagging <>) $  git push --set-upstream origin tagging
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 409 bytes | 409.00 KiB/s, done.
+Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'tagging' on GitHub by visiting:
+remote:      https://github.com/helix-clyde/submodules/pull/new/tagging
+remote:
+To github.com:helix-clyde/submodules.git
+ * [new branch]      tagging -> tagging
+Branch 'tagging' set up to track remote branch 'tagging' from 'origin'.
+
+submodules (tagging) $ git push --tags
+Enumerating objects: 2, done.
+Counting objects: 100% (2/2), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 326 bytes | 326.00 KiB/s, done.
+Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:helix-clyde/submodules.git
+ * [new tag]         1.0 -> 1.0
+
+```
+
 ---
 ## Cloning
 Just doing a git clone will *not* pull the submodules<br>
