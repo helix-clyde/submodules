@@ -12,12 +12,12 @@ When changing branches or to specific tags, reset the submodules with
 
 `git submodule update --checkout --recursive`
 
-Submodules are tracked by commit hash and not branch/tag.
+Submodules are tracked by commit hash and not branch/tag.  
 
 ----
 ## Create submodules
 
-From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.
+From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
 ```bash
 git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
 git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
