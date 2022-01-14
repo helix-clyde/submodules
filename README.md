@@ -19,13 +19,13 @@ Submodules are tracked by commit hash and not branch/tag.
 
 From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
 ```bash
-git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
-git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
+git submodule add --name bcftools -b master https://github.com/samtools/bcftools.git bcftools
+git submodule add --name samtools -b master https://github.com/samtools/samtools.git samtools
 git submodule add --name singularity -b master https://github.com/apptainer/singularity.git singularity
 ```
 Check the status
 ```bash
-(main) % git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
+(main) % git submodule add --name samtools -b master https://github.com/samtools/samtools.git samtools
 Cloning into './samtools'...
 remote: Enumerating objects: 12626, done.
 remote: Counting objects: 100% (809/809), done.
@@ -34,7 +34,7 @@ remote: Total 12626 (delta 563), reused 672 (delta 494), pack-reused 11817
 Receiving objects: 100% (12626/12626), 13.45 MiB | 1.85 MiB/s, done.
 Resolving deltas: 100% (8482/8482), done.
 
-submodules (main 2S-0U) % git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
+submodules (main 2S-0U) % git submodule add --name bcftools -b master https://github.com/samtools/bcftools.git bcftools
 Cloning into './bcftools'...
 remote: Enumerating objects: 14943, done.
 remote: Counting objects: 100% (1440/1440), done.
@@ -62,11 +62,11 @@ submodules (main 4S-0U) % git submodule status
 submodules (main 4S-0U) % cat .gitmodules
 [submodule "samtools"]
 	path = samtools
-	url = git@github.com:samtools/samtools.git
+	url = https://github.com/samtools/samtools.git
 	branch = master
 [submodule "bcftools"]
 	path = bcftools
-	url = git@github.com:samtools/bcftools.git
+	url = https://github.com/samtools/bcftools.git
 	branch = master
 [submodule "singularity"]
 	path = singularity
@@ -197,7 +197,7 @@ submodules_bare/bcftools (main) $
 To pull the submodule code if you've done a plain clone, do:
 ```bash
 git submodule update --init samtools/
-Submodule 'samtools' (git@github.com:samtools/samtools.git) registered for path 'samtools'
+Submodule 'samtools' (https://github.com/samtools/samtools.git) registered for path 'samtools'
 Cloning into 'submodules_bare/samtools'...
 Submodule path 'samtools': checked out 'c29621d3ae075573fce83e229a5e02348d4e8147'
 ```
