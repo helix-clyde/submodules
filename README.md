@@ -3,7 +3,7 @@
 
   We'll be utilizing the biotools suite to do this
 
-#### TL:DR
+#### [TL:DR](#tldr)
 Clone a repo that uses submodules with
 
 `git clone --recursive git@github.com:helix-clyde/submodules.git`
@@ -15,7 +15,7 @@ When changing branches or to specific tags, reset the submodules with
 Submodules are tracked by commit hash and not branch/tag.  
 
 ----
-## Create submodules
+## [Create submodules](#CreateSubmodules)
 
 From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
 ```bash
@@ -74,7 +74,7 @@ submodules (main 4S-0U) % cat .gitmodules
 	branch = master
 ```
 
-### Associate a specific tag (or revision) of a submodule with a branch
+### [Associate a specific tag (or revision) of a submodule with a branch](#AssociateBranch)
 To get specific revisions of a submodule into the branch, you'll need to go to each submodule and checkout the tag. <br>
 Since each submodule is tracked commit revision, it will always show as detached.<br>
 Don't forget to push your tags!
@@ -160,7 +160,7 @@ To github.com:helix-clyde/submodules.git
 ```
 
 ----
-## Cloning
+## [Cloning](#Cloning)
 Just doing a git clone will *not* pull the submodules<br>
 Running `git clone git@github.com:helix-clyde/submodules.git` will pull the repository, but will not checkout the submodules e.g.
 
@@ -212,11 +212,11 @@ for subm in $(grep submodule .gitmodules  | cut -d \" -f 2);
 Run `git clone --recursive git@github.com:helix-clyde/submodules.git` to do the full checkout
 
 ----
-## Changing branches
+## [Changing Branches](#ChangingBranches)
 
 The sha tag of the branch is tracked in `$(git root)/.gitmodules` and in the configuration directory `.git/modules/<submodulename>/HEAD`
 
-When you change to a branch that has a different submoddule commit, the submodules will **not** change to the committed version.
+When you change to a branch that has a different submodule commit, the submodules will **not** change to the committed version.
 
 In order to change to the commited version of the submodule run
 ```bash
@@ -272,7 +272,7 @@ submodules (1.13) %
 ```
 
 ----
-## References
+## [References](#References)
  - Official Git References
    - https://git-scm.com/book/en/v2/Git-Tools-Submodules
    - https://git-scm.com/docs/git-submodule
