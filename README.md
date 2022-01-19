@@ -1,9 +1,16 @@
 # Submodules
+
   Learning how to include and pin specific submodules.
 
-  We'll be utilizing the biotools suite to do this
+  We'll be utilizing the biotools suite to do this.  
 
-#### TL:DR
+  Before we begin, let's make sure we actually _want_ submodules as a solution.  
+  Please see [References](#References) for discussions of when and if we should use submodules.
+
+----
+
+#### [TL:DR](#tldr)
+
 Clone a repo that uses submodules with
 
 `git clone --recursive git@github.com:helix-clyde/submodules.git`
@@ -15,17 +22,21 @@ When changing branches or to specific tags, reset the submodules with
 Submodules are tracked by commit hash and not branch/tag.  
 
 ----
-## Create submodules
+
+## [Create submodules](#CreateSubmodules)
 
 From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
+
 ```bash
-git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
-git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
+git submodule add --name bcftools -b master https://github.com/samtools/bcftools.git bcftools
+git submodule add --name samtools -b master https://github.com/samtools/samtools.git samtools
 git submodule add --name singularity -b master https://github.com/apptainer/singularity.git singularity
 ```
+
 Check the status
+
 ```bash
-(main) % git submodule add --name samtools -b master git@github.com:samtools/samtools.git samtools
+(main) % git submodule add --name samtools -b master https://github.com/samtools/samtools.git samtools
 Cloning into './samtools'...
 remote: Enumerating objects: 12626, done.
 remote: Counting objects: 100% (809/809), done.
@@ -34,7 +45,7 @@ remote: Total 12626 (delta 563), reused 672 (delta 494), pack-reused 11817
 Receiving objects: 100% (12626/12626), 13.45 MiB | 1.85 MiB/s, done.
 Resolving deltas: 100% (8482/8482), done.
 
-submodules (main 2S-0U) % git submodule add --name bcftools -b master git@github.com:samtools/bcftools.git bcftools
+submodules (main 2S-0U) % git submodule add --name bcftools -b master https://github.com/samtools/bcftools.git bcftools
 Cloning into './bcftools'...
 remote: Enumerating objects: 14943, done.
 remote: Counting objects: 100% (1440/1440), done.
@@ -62,11 +73,11 @@ submodules (main 4S-0U) % git submodule status
 submodules (main 4S-0U) % cat .gitmodules
 [submodule "samtools"]
 	path = samtools
-	url = git@github.com:samtools/samtools.git
+	url = https://github.com/samtools/samtools.git
 	branch = master
 [submodule "bcftools"]
 	path = bcftools
-	url = git@github.com:samtools/bcftools.git
+	url = https://github.com/samtools/bcftools.git
 	branch = master
 [submodule "singularity"]
 	path = singularity
@@ -74,11 +85,11 @@ submodules (main 4S-0U) % cat .gitmodules
 	branch = master
 ```
 
-### Associate a specific tag (or revision) of a submodule with a branch
+### [Associate a specific tag (or revision) of a submodule with a branch](#AssociateBranch)
+
 To get specific revisions of a submodule into the branch, you'll need to go to each submodule and checkout the tag. <br>
 Since each submodule is tracked commit revision, it will always show as detached.<br>
 Don't forget to push your tags!
-
 
 ```bash
 submodules (main) $ git checkout -b tagging
@@ -156,12 +167,12 @@ Writing objects: 100% (2/2), 326 bytes | 326.00 KiB/s, done.
 Total 2 (delta 0), reused 0 (delta 0), pack-reused 0
 To github.com:helix-clyde/submodules.git
  * [new tag]         1.0 -> 1.0
-
 ```
-
 ----
-## Cloning
-Just doing a git clone will *not* pull the submodules<br>
+
+## [Cloning](#Cloning)
+
+Just doing a git clone will _not_ pull the submodules<br>
 Running `git clone git@github.com:helix-clyde/submodules.git` will pull the repository, but will not checkout the submodules e.g.
 
 ```bash
@@ -195,34 +206,40 @@ submodules_bare/bcftools (main) $
 ```
 
 To pull the submodule code if you've done a plain clone, do:
+
 ```bash
 git submodule update --init samtools/
-Submodule 'samtools' (git@github.com:samtools/samtools.git) registered for path 'samtools'
+Submodule 'samtools' (https://github.com/samtools/samtools.git) registered for path 'samtools'
 Cloning into 'submodules_bare/samtools'...
 Submodule path 'samtools': checked out 'c29621d3ae075573fce83e229a5e02348d4e8147'
 ```
 
 or you can run this bash snippet
+```bash
+    for subm in $(grep submodule .gitmodules  | cut -d \" -f 2);
+      do
+        git submodule update --init $subm
+      done
 ```
-for subm in $(grep submodule .gitmodules  | cut -d \" -f 2);
-  do
-    git submodule update --init $subm
-  done
-```
+
 Run `git clone --recursive git@github.com:helix-clyde/submodules.git` to do the full checkout
 
-----
-## Changing branches
+* * *
+
+## [Changing Branches](#ChangingBranches)
 
 The sha tag of the branch is tracked in `$(git root)/.gitmodules` and in the configuration directory `.git/modules/<submodulename>/HEAD`
 
-When you change to a branch that has a different submoddule commit, the submodules will **not** change to the committed version.
+When you change to a branch that has a different submodule commit, the submodules will **not** change to the committed version.
 
 In order to change to the commited version of the submodule run
+
 ```bash
 git submodule update --checkout --recursive
 ```
+
 Note the following example
+
 ```bash
 submodules (main) % git submodule
  5f1bf7a1b016c24d38657bdde5fd2ca27e6954e9 bcftools (1.14)
@@ -271,8 +288,14 @@ submodules (1.13) % git submodule
 submodules (1.13) %
 ```
 
-----
-## References
- - Official Git References
-   - https://git-scm.com/book/en/v2/Git-Tools-Submodules
-   - https://git-scm.com/docs/git-submodule
+* * *
+
+## [References](#References)
+
+- When to use submodules
+    - [Why you should (probably) not use submodules](https://abildskov.io/2021/03/28/why-i-hate-submodules/)
+    - [Using Git Submodules Effectively](https://www.philosophicalhacker.com/post/using-git-submodules-effectively/)
+-   Official Git References and tutorials
+    - https://git-scm.com/book/en/v2/Git-Tools-Submodules
+    - https://git-scm.com/docs/git-submodule
+    - https://www.atlassian.com/git/tutorials/git-submodule
