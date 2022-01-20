@@ -23,11 +23,15 @@ Clone a repo that uses submodules with
 
 `git clone --recursive git@github.com:helix-clyde/submodules.git`
 
-When changing branches or to specific tags, reset the submodules with
+When changing branches, use
 
-`git submodule update --checkout --recursive`
+`git checkout --recurse-submodules <branchName>`
 
 Submodules are tracked by commit hash and not branch/tag.  
+
+To push **all** changes (submodules included), use
+
+`git push --recurse-submodules=on-demand`
 
 ----
 
