@@ -21,7 +21,7 @@
 
 Clone a repo that uses submodules with
 
-`git clone --recursive git@github.com:helix-clyde/submodules.git`
+`git clone --recursive https://github.com/helix-clyde/submodules.git`
 
 When changing branches, use
 
@@ -185,10 +185,10 @@ To github.com:helix-clyde/submodules.git
 ## [Cloning](#Cloning)
 
 Just doing a git clone will _not_ pull the submodules<br>
-Running `git clone git@github.com:helix-clyde/submodules.git` will pull the repository, but will not checkout the submodules e.g.
+Running `git clone https://github.com/helix-clyde/submodules.git` will pull the repository, but will not checkout the submodules e.g.
 
 ```bash
-git clone git@github.com:helix-clyde/submodules.git submodules_bare
+git clone https://github.com/helix-clyde/submodules.git submodules_bare
 Cloning into 'submodules_bare'...
 remote: Enumerating objects: 13, done.
 remote: Counting objects: 100% (13/13), done.
@@ -234,7 +234,7 @@ or you can run this bash snippet
       done
 ```
 
-Run `git clone --recursive git@github.com:helix-clyde/submodules.git` to do the full checkout
+Run `git clone --recursive https://github.com/helix-clyde/submodules.git` to do the full checkout
 
 * * *
 
@@ -244,7 +244,7 @@ The sha tag of the branch is tracked in `$(git root)/.gitmodules` and in the con
 
 When you change to a branch that has a different submodule commit, the submodules will **not** change to the committed version.
 
-In order to change to the commited version of the submodule run
+In order to change to the committed version of the submodule run
 
 ```bash
 git submodule update --checkout --recursive
