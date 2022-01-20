@@ -8,6 +8,14 @@
   Please see [References](#References) for discussions of when and if we should use submodules.
 
 ----
+#### [Table of Contents](#TOC)
+- [Create submodules](#CreateSubmodules)
+- [Associate a specific tag](#AssociateBranch)
+- [Cloning](#Cloning)
+- [Changing Branches](#ChangingBranches)
+- [References](#References)
+
+----
 
 #### [TL:DR](#tldr)
 
@@ -15,11 +23,15 @@ Clone a repo that uses submodules with
 
 `git clone --recursive git@github.com:helix-clyde/submodules.git`
 
-When changing branches or to specific tags, reset the submodules with
+When changing branches, use
 
-`git submodule update --checkout --recursive`
+`git checkout --recurse-submodules <branchName>`
 
 Submodules are tracked by commit hash and not branch/tag.  
+
+To push **all** changes (submodules included), use
+
+`git push --recurse-submodules=on-demand`
 
 ----
 
@@ -85,7 +97,7 @@ submodules (main 4S-0U) % cat .gitmodules
 	branch = master
 ```
 
-### [Associate a specific tag (or revision) of a submodule with a branch](#AssociateBranch)
+## [Associate a specific tag (or revision) of a submodule with a branch](#AssociateBranch)
 
 To get specific revisions of a submodule into the branch, you'll need to go to each submodule and checkout the tag. <br>
 Since each submodule is tracked commit revision, it will always show as detached.<br>
