@@ -2,12 +2,13 @@
 
   Learning how to include and pin specific submodules.
 
-  We'll be utilizing the biotools suite to do this.  
+  We'll be utilizing the biotools suite to do this.
 
-  Before we begin, let's make sure we actually _want_ submodules as a solution.  
+  Before we begin, let's make sure we actually _want_ submodules as a solution.
   Please see [References](#References) for discussions of when and if we should use submodules.
 
 ----
+
 #### [Table of Contents](#TOC)
 - [Create submodules](#CreateSubmodules)
 - [Associate a specific tag](#AssociateBranch)
@@ -27,7 +28,7 @@ When changing branches, use
 
 `git checkout --recurse-submodules <branchName>`
 
-Submodules are tracked by commit hash and not branch/tag.  
+Submodules are tracked by commit hash and not branch/tag.
 
 To push **all** changes (submodules included), use
 
@@ -37,7 +38,7 @@ To push **all** changes (submodules included), use
 
 ## [Create submodules](#CreateSubmodules)
 
-From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.  
+From inside a git repo, add submodules with `git submodule add`, ensure you use a reference that all users will be able to reach.
 
 ```bash
 git submodule add --name bcftools -b master https://github.com/samtools/bcftools.git bcftools
@@ -300,7 +301,7 @@ submodules (1.13) % git submodule
 submodules (1.13) %
 ```
 
-* * *
+----
 
 ## [References](#References)
 
